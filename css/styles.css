@@ -1,0 +1,22 @@
+body{
+	background-color: #333;
+}
+
+.center{
+	margin: 0 auto ;
+}
+
+.chart{
+	width: 900px; 
+	height: 500px;
+}
+
+.labels{
+	color: #EEE;
+	text-align: center;
+	font-size: 40px;
+}
+
+#data{
+	margin-top: 50px;
+}

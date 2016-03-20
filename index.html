@@ -1,0 +1,73 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/circle.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title></title>
+</head>
+<body>
+
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Tank Monitor</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active" ><a href="index.html">Home</a></li>
+      <li class=""><a href="chart.html">Graph</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+    <table class='center' id="data" style="display:block;">
+        <tr>
+            <td>
+                <div class="c100 p100 big dark">
+                    <span>500 L</span>
+                    <div class="slice">
+                      <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </td>
+            <td>    
+                <div class="c100 p50 big dark">
+                    <span>50 %</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </td>
+            <td>    
+                <div class="c100 p50 big dark">
+                    <span>50 &#176;C</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="labels">
+            <td>Tank Level&nbsp;</td>
+            <td>Humidity</td>
+            <td>Temprature</td>
+        </tr>
+    </table>
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
