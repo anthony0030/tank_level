@@ -1,23 +1,21 @@
-google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+$.getScript('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',function(){
+$.getScript('http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js',function(){
 
-
-
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['day', 'Liters'],
-      ['01',  1000],
-      ['2014',  1170],
-      ['2015',  660],
-      ['2016',  1030]
-    ]);
-
-    var options = {
-      title: 'Tank level',
-      hAxis: {title: 'Tank Level',  titleTextStyle: {color: '#333'}},
-      vAxis: {minValue: 0}
-    };
-
-    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
+  Morris.Area({
+    element: 'area-example',
+    data: [
+      { y: '1.1.', a: 100, b: 90 },
+      { y: '2.1.', a: 75,  b: 65 },
+      { y: '3.1.', a: 50,  b: 40 },
+      { y: '4.1.', a: 75,  b: 65 },
+      { y: '5.1.', a: 50,  b: 40 },
+      { y: '6.1.', a: 75,  b: 65 },
+      { y: '7.1.', a: 100, b: 90 }
+    ],
+    xkey: 'y',
+    ykeys: ['a', 'b'],
+    labels: ['Series A', 'Series B']
+  });
+  
+});
+});

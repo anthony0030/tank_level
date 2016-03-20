@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/circle.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title></title>
+    <title>Home</title>
 </head>
 <body>
 
@@ -28,8 +28,8 @@
     <table class='center' id="data" style="display:block;">
         <tr>
             <td>
-                <div class="c100 p100 big dark">
-                    <span>500 L</span>
+                <div class="c100 big dark" id="tank_line">
+                    <span id="tank_print"></span>
                     <div class="slice">
                       <div class="bar"></div>
                         <div class="fill"></div>
@@ -37,8 +37,8 @@
                 </div>
             </td>
             <td>    
-                <div class="c100 p50 big dark">
-                    <span>50 %</span>
+                <div class="c100 big dark" id="hum_line">
+                    <span id="hum_print"></span>
                     <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -46,11 +46,11 @@
                 </div>
             </td>
             <td>    
-                <div class="c100 p50 big dark">
-                    <span>50 &#176;C</span>
+                <div class="c100 big dark" id="temp_line">
+                    <span id="temp_print"></span>
                     <div class="slice">
                         <div class="bar"></div>
-                        <div class="fill"></div>
+                        <div class="fill" id="temp_color"></div>
                     </div>
                 </div>
             </td>
@@ -68,6 +68,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/config.js"></script>
+
 
 </body>
 </html>
