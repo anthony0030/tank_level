@@ -1,6 +1,7 @@
 #include <DHT.h>
 #include <Ethernet.h>
 #include <SPI.h>
+#include <LiquidCrystal.h>
 
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
 EthernetClient client;
