@@ -7,6 +7,9 @@ byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
 EthernetClient client;
 
 const float pi = 3.14;
+const int tank_height = 2000;
+const int tank_radius = 50;
+
 
 #define TRIG 10      // Trigger pin
 #define ECHO 13      // Echo pin
@@ -23,12 +26,9 @@ LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
 int temprature = 0;  // TEMPERATURE VAR
 int humidity = 0;  // HUMIDITY VAR
-int tank_liters = 0;  // HUMIDITY VAR
+float tank_liters = 0;  // liters VAR
 String data;
 
-int height = 2000;
-int liters = 0;
-int radius = 50;
 
 void setup() { 
   Serial.begin(115200);
@@ -47,14 +47,25 @@ void setup() {
 }
 
 void loop(){
-
   currentMillis = millis();
   if(currentMillis - previousMillis > interval) { // READ ONLY ONCE PER INTERVAL
     previousMillis = currentMillis;
-    humidity = (int) dht.readHumidity();
-    temprature = (int) dht.readTemperature();
+    data_out();
   }
 
+  data_in();
+  print_lcd();
+  delay(3000); // WAIT 3 seconds
+}
+
+void data_in(){
+  liters = tank_liters()
+  humidity = (int) dht.readHumidity();
+  temprature = (int) dht.readTemperature();
+}
+
+
+void data_out(){
   data = "temp1=" + temprature + "&hum1=" + temprature + "&lit1=" + tank_liters;
 
   if (client.connect("www.*****.*************.com",80)) { // REPLACE WITH YOUR SERVER ADDRESS
@@ -70,12 +81,21 @@ void loop(){
   if (client.connected()) { 
     client.stop();  // DISCONNECT FROM THE SERVER
   }
-
-  delay(300000); // WAIT FIVE MINUTES BEFORE SENDING AGAIN
 }
 
-int tank_calculator(){
-
+float tank_liters(){
+  long duration , tank_emty , tank_full;
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  tank_emty = ((duration/2) / 29.1);
+  tank_full = tank_height - tank_emty
+  return ((pi*pow(radius, 2)) * tank_full);
 }
 
-
+void print_lcd(){
+ //script ot print the data to the lcd
+}
