@@ -41,7 +41,8 @@ void setup() {
   delay(10000); // GIVE THE SENSOR SOME TIME TO START
 
   humidity = (int) dht.readHumidity(); 
-  temprature = (int) dht.readTemperature(); 
+  temprature = (int) dht.readTemperature();
+  liters = tank_liters(); 
 
   data = "";
 }
@@ -59,7 +60,7 @@ void loop(){
 }
 
 void data_in(){
-  liters = tank_liters()
+  liters = tank_liters();
   humidity = (int) dht.readHumidity();
   temprature = (int) dht.readTemperature();
 }
@@ -98,4 +99,5 @@ float tank_liters(){
 
 void print_lcd(){
  //script ot print the data to the lcd
+}
 }
