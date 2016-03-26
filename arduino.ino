@@ -67,7 +67,6 @@ void data_in(){
 
 
 void data_out(){
-  data = "temp1=" + temprature + "&hum1=" + temprature + "&lit1=" + tank_liters;
 
   if (client.connect("www.*****.*************.com",80)) { // REPLACE WITH YOUR SERVER ADDRESS
     client.println("POST /add.php HTTP/1.1"); 
