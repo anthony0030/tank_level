@@ -100,4 +100,7 @@ float tank_liters(){
 void print_lcd(){
  //script ot print the data to the lcd
 }
+
+void print_lcd_welcome(){
+ //script ot print the data to the lcd
 }
