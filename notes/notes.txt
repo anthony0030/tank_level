@@ -2,3 +2,5 @@ http://www.instructables.com/id/PART-1-Send-Arduino-data-to-the-Web-PHP-MySQL-D3
 http://www.instructables.com/id/Measuring-water-level-with-ultrasonic-sensor/?ALLSTEPS
 http://www.arduinogr.com/2013/01/water-tank-level-display.html
 http://www.instructables.com/id/Online-Graphs-Using-Nothing-but-an-Arduino-Etherne/?ALLSTEPS
+http://www.instructables.com/id/Real-time-room-temperature-on-your-Website-no-jav/?ALLSTEPS
+http://www.highcharts.com/
