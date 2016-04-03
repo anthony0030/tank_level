@@ -2,13 +2,17 @@
 #include <Ethernet.h>
 #include <SPI.h>
 #include <LiquidCrystal.h>
+#include <dht11.h>
 
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
+byte ip[] = { 192, 168, 1, 117 }; // RESERVED IP ADDRESS
 EthernetClient client;
 
-const float pi = 3.14;
+const float pi = 3.14159265359;
 const int tank_height = 2000;
 const int tank_radius = 50;
+const float tank_liters = 0;
+const float tank_liters_missing = 0;
 
 
 #define TRIG 10      // Trigger pin
@@ -18,20 +22,21 @@ const int tank_radius = 50;
 
 DHT dht(DHTPIN, DHTTYPE);
 
-long previousMillis = 0;
-unsigned long currentMillis = 0;
-long interval = 250000; // READING INTERVAL
+
 
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
 int temprature = 0;  // TEMPERATURE VAR
 int humidity = 0;  // HUMIDITY VAR
-float tank_liters = 0;  // liters VAR
+float tank_liters_current = 0;  // liters VAR
 String data;
 
 
 void setup() { 
   Serial.begin(115200);
+
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
 
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP"); 
@@ -48,23 +53,43 @@ void setup() {
 }
 
 void loop(){
-  currentMillis = millis();
-  if(currentMillis - previousMillis > interval) { // READ ONLY ONCE PER INTERVAL
-    previousMillis = currentMillis;
-    data_out();
-  }
+  da
 
-  data_in();
-  print_lcd();
-  delay(3000); // WAIT 3 seconds
+
 }
 
-void data_in(){
-  liters = tank_liters();
-  humidity = (int) dht.readHumidity();
-  temprature = (int) dht.readTemperature();
+
+void tank_Liters(){
+  long duration, missing_cm;
+
+  digitalWrite(TRIG, LOW); 
+  delayMicroseconds(2); 
+
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10); 
+ 
+  digitalWrite(TRIG, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  missing_cm = duration/58.2;
+
+
+  tank_liters_missing = (pi*tank_radius*missing_cm);
+
+  tank_liters_current = tank_liters - tank_liters_missing;
 }
 
+
+void print_lcd(){
+ //script ot print the data to the lcd
+}
+
+void print_lcd_welcome(){
+ //script ot print the data to the lcd
+}
+
+void log_to_sd(){
+ //script ot print the data to sd card
+}
 
 void data_out(){
   data = "temp1=" + temprature + "&hum1=" + temprature + "&lit1=" + liters;
@@ -84,23 +109,8 @@ void data_out(){
   }
 }
 
-float tank_liters(){
-  long duration , tank_emty , tank_full;
-  digitalWrite(TRIG, LOW);
-  delayMicroseconds(2);
-  digitalWrite(TRIG, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG, LOW);
-  duration = pulseIn(ECHO, HIGH);
-  tank_emty = ((duration/2) / 29.1);
-  tank_full = tank_height - tank_emty
-  return ((pi*pow(radius, 2)) * tank_full);
-}
-
-void print_lcd(){
- //script ot print the data to the lcd
-}
-
-void print_lcd_welcome(){
- //script ot print the data to the lcd
+void data_in(){
+  liters = tank_liters();
+  humidity = (int) dht.readHumidity();
+  temprature = (int) dht.readTemperature();
 }
